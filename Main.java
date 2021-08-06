@@ -1,13 +1,11 @@
 import java.util.*; //maps, arrlists
 class Main {
   public static void main(String[] args) {
-    int[][] myArr = {{1,3,2,7,3},
-                     {10,10,4,6,2},
-                     {5,3,5,9,6},
-                     {3,6,4,2,1}};
+   HiddenWord mywords = new HiddenWord("JAVA");
+   
+   System.out.println(HiddenWord.getHint("JVOA"));
 
-  
-  System.out.println(isDiverse(myArr));
+   
    
   }
 
@@ -105,6 +103,99 @@ public static boolean scores100(int[] scores){
   return true;
 
   }
+}
+class HiddenWord{
+  private static String word;
+
+  public HiddenWord(String _word){
+    word = _word.toUpperCase();
+  }
+  public static String getHint(String guess){
+  /// "a" + "b" ==== "ab" concatonation
+  String resultString ="";
+      for(int i=0;i<guess.length();i++){
+          if(word.charAt(i)==guess.charAt(i)){
+            resultString = resultString + guess.charAt(i);
+          }else 
+          if(word.contains(guess.subSequence(i,i+1))){
+            resultString = resultString + "+";
+          }
+          else{
+            resultString = resultString + "*";
+          }
+      }
+  return resultString;
+  }
+  public int getLength(){
+    return word.length();
+  }
+}
+
+class SparseArray{
+  private int numRows;
+  private int numCols;
+
+  private List<SparseArrayEntry> entries;
+  public static SparseArray(){
+    entries = new ArrayList<SparseArrayEntries>();
+  }
+  public int getNumRows(){
+    return numRows;
+  }
+  public int getNumCols(){
+    return numCols;
+  }
+  public int getValueAt(int r, int c){
+
+    for(SparseArrayEntry SAE : entries){
+      if(SAE.getRow() ==r && SAE.getCol()==c){
+        return SAE.getValue();
+      }
+    }
+    return 0;
+  }
+  public void removeCol(int c){
+
+      for(int i=0; i <entries.length(); i++;){
+        if(SAE.getCol()==c){
+          entries.remove(i);
+        }else if(SAE.getCol >c){
+          SparseArrayEntry current = entries.at(i);
+          SparseArrayEntry s = new SparseArrayEntry(
+            current.getRow(), //new Sparse array entry, at r, c-1, value v
+            current.getCol()-1,
+            current.getValue()
+            )
+
+          entries.add(s);
+          entries.remove(i);
+        }
+    numCols--;
+      }
+  }
+
+}
+
+class SparseArrayEntry{
+  private int r;
+  private int c;
+  private int v;
+
+  public SparseArrayEntry(int _r, int _c, int _v){
+    r = _r;
+    c = _c;
+    v = _v;
+  }
+  public int getRow(){
+    return r;
+  }
+  public int getCol(){
+    return c;
+  }
+  public int getValue(){
+    return value;
+  }
+
 }
 
 class User{
