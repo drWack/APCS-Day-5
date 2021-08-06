@@ -1,16 +1,13 @@
+import java.util.*; //maps, arrlists
 class Main {
   public static void main(String[] args) {
     int[][] myArr = {{1,3,2,7,3},
                      {10,10,4,6,2},
                      {5,3,5,9,6},
-                     {7,6,4,2,1}};
+                     {3,6,4,2,1}};
 
   
-  int[] sums = rowSums(myArr);
-
-  for(int i: sums){
-    System.out.println(i);
-  }
+  System.out.println(isDiverse(myArr));
    
   }
 
@@ -95,8 +92,20 @@ public static boolean scores100(int[] scores){
     }
   return returnArray;
   }
-}
+  public static boolean isDiverse(int[][] arr2D){
+    int[] sums = rowSums(arr2D);
+    Map<Integer,Boolean> myMap = new HashMap<Integer,Boolean>();
+    for(int i : sums){
+      if(myMap.containsKey(i)){
+        return false;
+      }else{
+        myMap.put(i,true);
+      }
+    }
+  return true;
 
+  }
+}
 
 class User{
   private String name;
